@@ -14,7 +14,7 @@ const CargoteryCard = ({ card }: CargotegyCard) => {
           {card.description}
         </Card.Text>
         <Link to={`explore/${card.name}`}>
-        <Button variant='info'>Explore More</Button>
+          <Button variant='info'>Explore More</Button>
         </Link>
       </Card.Body>
       {/* <Card.Footer className='text-muted'>2 days ago</Card.Footer> */}
