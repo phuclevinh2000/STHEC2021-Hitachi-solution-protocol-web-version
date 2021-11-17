@@ -23,14 +23,15 @@ const HomeScreen = () => {
         </Col>
         <Col sm={12} md={6}>
           <Card className='my-3 p-3 rounded' style={{ width: '30rem', height: '30rem' }}>
-            <Card.Img variant='top' src='holder.js/100px180' />
+            <Card.Img variant='top' src='/images/hitachilogo.jpg' style={{ width: '27rem', height: '15rem' }}/>
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
+              <Card.Title>To Shop</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                To the web application
               </Card.Text>
-              <Button variant='primary'>Go somewhere</Button>
+              <Link to="/product">
+              <Button variant='primary'>To Shop</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>

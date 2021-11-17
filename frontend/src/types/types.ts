@@ -5,11 +5,12 @@ export type ProductType = {
     image: string;
     description: string;
     category: string;
-    price: number;
+    prices: number;
     countInStock: number;
     rating: number;
     numReviews: number;
     emissonCO2: number;
+    lifeCircleCO2Estimation: number;
     electricityCost: number;
   };
 };
@@ -18,4 +19,8 @@ export type RatingType = {
   value: any;
   text: string;
   color: string;
+};
+
+export type CargotegyCard = {
+  card: { name: string; background: string; description: string };
 };

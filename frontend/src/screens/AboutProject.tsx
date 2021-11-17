@@ -69,7 +69,7 @@ const AboutProject = () => {
         <p>
           <strong className='text-danger'>Solution: </strong> An app that would
           provide real-time information to track the environmental performance
-          of companies.
+          of companies. Assum that we have all the data from Lumada and we already have a protocol for measurement
         </p>
       </Col>
       <Col md={7} className='mt-5'>
@@ -82,7 +82,7 @@ const AboutProject = () => {
       </Col>
       <Col md={12} className='mt-5'>
         <h5 className="d-flex justify-content-center">
-          This web application is developing as a prototype by Phuc Le.
+          This web application is developing as a prototype by Phuc Le. The reason is to learn about full-stack developing and dig deeper into this topic.
           Technology using in this web application contain:
         </h5>
         <div className="d-flex justify-content-center">
