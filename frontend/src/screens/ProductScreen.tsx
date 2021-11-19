@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Row,
@@ -10,15 +10,24 @@ import {
   Form,
 } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import Product from '../components/Product';
-import products from '../data/products';
+import axios from 'axios';
+import { SingleProduct } from '../types/types';
 
 const ProductScreen = () => {
   const { id } = useParams();
-  const product = products.find((p) => p._id === id)
+  // const product = products.find((p) => p._id === id)
+  const [product, setProduct] = useState<SingleProduct>()
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${id}`)
+
+      setProduct(data)
+    }
+    fetchProduct()
+  }, [id])
   return (
     <>
-       <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn btn-light my-3' to='/product'>
         Go Back
       </Link>
       {product ? (

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ProductType } from '../types/types';
+import { ProductCardType } from '../types/types';
 import Rating from './Rating';
 
-const Product = ({product}:ProductType) => {
+const Product = ({product}:ProductCardType) => {
   return (
     <Card className="my-1 p-3 rounded h-100" >
       <Link to={`/product/${product._id}`}>

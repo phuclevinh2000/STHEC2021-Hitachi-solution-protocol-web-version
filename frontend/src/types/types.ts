@@ -1,4 +1,4 @@
-export type ProductType = {
+export type ProductCardType = {
   product: {
     _id: string;
     name: string;
@@ -14,6 +14,17 @@ export type ProductType = {
     electricityCost: number;
   };
 };
+
+export type SingleProduct = {
+  image: string,
+  name: string,
+  rating: string,
+  numReviews: number,
+  prices: number,
+  description: string,
+  countInStock: number,
+  category: string,
+}
 
 export type RatingType = {
   value: any;
