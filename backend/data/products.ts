@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Medium Voltage Motor Control Centers',
     image: '/images/product/voltagemotorcontrol.png',
     description: 'Description for the product',
@@ -14,7 +13,6 @@ const products = [
     electricityCost: 120
   },
   {
-    _id: '2',
     name: 'Hitachi E27 Spiral Bulbs',
     image: '/images/product/e27lightbulb.jpg',
     description: 'Compared to traditional incandescents, energy-efficient lightbulbs such as halogen incandescents, compact fluorescent lamps (CFLs), and light emitting diodes (LEDs) have the following advantages: Typically use about 25%-80% less energy than traditional incandescents, saving you money.',
@@ -28,7 +26,6 @@ const products = [
     electricityCost: 10
   },
   {
-    _id: '3',
     name: 'Hitachi Energy-saving VRF Air Conditioner',
     image: '/images/product/airconditioner.jpg',
     description: 'Compared to traditional incandescents, energy-efficient lightbulbs such as halogen incandescents, compact fluorescent lamps (CFLs), and light emitting diodes (LEDs) have the following advantages: Typically use about 25%-80% less energy than traditional incandescents, saving you money.',
@@ -42,7 +39,6 @@ const products = [
     electricityCost: 50
   },
   {
-    _id: '4',
     name: 'Hitachi Solar Panel',
     image: '/images/product/solarPanel.png',
     description: 'Hitachi ABB Power Grids launches all-new remote terminal unit to support grid modernization and renewables integration',
@@ -56,7 +52,6 @@ const products = [
     electricityCost: 0
   },
   {
-    _id: '5',
     name: 'Modular DIN-Rail products',
     image: '/images/product/rtu530.png',
     description: 'Hitachi ABB Power Grids launches all-new remote terminal unit to support grid modernization and renewables integration',
@@ -70,7 +65,6 @@ const products = [
     electricityCost: 4
   },
   {
-    _id: '6',
     name: 'High-performance string protection MCB',
     image: '/images/product/MCB.jpg',
     description: 'The S800PV-SP provides string protection up to 125A and 1500VDC with Icu=5kA in accordance with IEC 60947-2 and Annex P.',
@@ -84,7 +78,6 @@ const products = [
     electricityCost: 4
   },
   {
-    _id: '7',
     name: 'Electron microscopes',
     image: '/images/product/electronmicroscope.webp',
     description: 'A wide array of advanced electron microscopes, including Standard and Variable-Pressure Scanning Electron Microscopes (SEM & VP-SEM), Field-Emission Scanning Electron Microscopes (FE-SEM), Biological and Analytical Transmission Electron Microscopes (TEM), Scanning Transmission Electron Microscopes (STEM), and Tabletop Microscopes',
@@ -98,7 +91,6 @@ const products = [
     electricityCost: 4
   },
   {
-    _id: '8',
     name: 'Thermal Analysis Systems',
     image: '/images/product/thermalAnalysis.webp',
     description: 'The S800PV-SP provides string protection up to 125A and 1500VDC with Icu=5kA in accordance with IEC 60947-2 and Annex P.',
@@ -112,7 +104,6 @@ const products = [
     electricityCost: 4
   },
   {
-    _id: '9',
     name: 'Radiation Therapy',
     image: '/images/product/radiationTherapy.png',
     description: 'Patient-friendly cancer treatment',
