@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Row,
@@ -9,28 +9,33 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../components/Rating';
-import axios from 'axios';
-import { SingleProduct } from '../types/types';
+import { listProductDetail } from '../redux/actions/productAction';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreen = () => {
+  const [qty, setQty] = useState(1);
   const { id } = useParams();
-  // const product = products.find((p) => p._id === id)
-  const [product, setProduct] = useState<SingleProduct>()
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${id}`)
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state: any) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
-      setProduct(data)
-    }
-    fetchProduct()
-  }, [id])
+  useEffect(() => {
+    dispatch(listProductDetail(id));
+  }, [dispatch, id]);
+
   return (
     <>
       <Link className='btn btn-light my-3' to='/product'>
         Go Back
       </Link>
-      {product ? (
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'></Message>
+      ) : (
         <Row>
           <Col md={6}>
             <Image src={product?.image} alt={product?.name} fluid />{' '}
@@ -70,15 +75,39 @@ const ProductScreen = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+                {
+                  product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Qty</Col>
+                        <Col>
+                          <Form.Control as="select">
+                            
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )
+                }
+                <ListGroup.Item>
+                  <Button
+                    // onClick={addToCartHandler}
+                    className='w-100'
+                    type='button'
+                    disabled={product.countInStock === 0}
+                  >
+                    {' '}
+                    {/* btn-block is replace by w-100 */}
+                    Add To Cart
+                  </Button>
+                </ListGroup.Item>
               </ListGroup>
             </Card>
           </Col>
         </Row>
-      ) : (
-        <h1>Hi</h1>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProductScreen
+export default ProductScreen;

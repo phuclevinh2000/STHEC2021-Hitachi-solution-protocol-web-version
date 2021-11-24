@@ -1,24 +1,29 @@
 import React, {useEffect, useState} from 'react'
-// import products from '../data/products'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Row, Col } from 'react-bootstrap'
 import Product from './Product'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { listProducts } from '../redux/actions/productAction'
+import { ProductType } from '../types'
 
 const CardProduct = () => {
+  const dispatch = useDispatch()
+  const productList = useSelector((state: any) => state.productList);
   const { cardname } = useParams()
-  const [products, setProducts] = useState([])
-  // const product = products.filter((p) => p.category === cardname)
   
+  const { products } = productList;
+  const product = products.filter((p: { category: string | undefined }) => p.category === cardname)
+  
+  console.log(product)
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
-      const filterData = data.filter((p : any) => p.category === cardname)
-      setProducts(filterData)
-    }
-    fetchProducts()
-  }, [cardname])
+    // const fetchProducts = async () => {
+      
+    //   const filterData = data.filter((p : any) => p.category === cardname)
+    // }
+    dispatch(listProducts())
+  }, [dispatch])
   return (
     <>
       <Link className='btn btn-light my-3' to='/product'>
@@ -26,7 +31,7 @@ const CardProduct = () => {
       </Link>
       <h1>{cardname}</h1>
       <Row>
-        {products.map((product) => (
+        {product.map((product: ProductType) => (
           <Col sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>
