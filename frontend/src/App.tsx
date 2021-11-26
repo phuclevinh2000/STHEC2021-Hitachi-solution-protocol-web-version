@@ -8,6 +8,7 @@ import AboutProject from './screens/AboutProject';
 import ProductCargotery from './screens/ProductCargotery';
 import CardProduct from './components/CardProduct';
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
       <main className='py-3 d-flex justify-content-center'>
         <Container>
         <Routes>
+          <Route path="/cart/" element={<CartScreen />} />
+          <Route path="/cart/:id" element={<CartScreen />} />
           <Route path="/aboutproject" element={<AboutProject />} />
           <Route path='/product' element={<ProductCargotery />} />
           <Route path='/product/:id' element={<ProductScreen />} />

@@ -44,3 +44,4 @@ export type CargoteryType = {
 export type CargotegyCard = {
   card: CargoteryType;
 };
+

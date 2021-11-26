@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Row, Col } from 'react-bootstrap'
 import Product from './Product'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { listProducts } from '../redux/actions/productAction'
 import { ProductType } from '../types'
 
@@ -16,7 +15,7 @@ const CardProduct = () => {
   const { products } = productList;
   const product = products.filter((p: { category: string | undefined }) => p.category === cardname)
   
-  console.log(product)
+  // console.log(product)
   useEffect(() => {
     // const fetchProducts = async () => {
       
@@ -32,7 +31,7 @@ const CardProduct = () => {
       <h1>{cardname}</h1>
       <Row>
         {product.map((product: ProductType) => (
-          <Col sm={12} md={6} lg={4} xl={3}>
+          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>
         ))}
