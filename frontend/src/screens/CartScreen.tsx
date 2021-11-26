@@ -11,7 +11,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart } from '../redux/actions/cartAction';
+import { addToCart, removeFromCart } from '../redux/actions/cartAction';
 
 const CartScreen = () => {
   const { id } = useParams(); //useParams to catch the id of each product
@@ -30,12 +30,12 @@ const CartScreen = () => {
     }
   }, [dispatch, qty, id]);
 
-  const removeFromCartHandler = (id: number) => {
-    console.log('remove');
+  const removeFromCartHandler = (id: string) => {
+    dispatch(removeFromCart(id))
   };
 
   const checkoutHandler = () => {
-    console.log("checkout")
+    navigate('/login?redirect=shipping')  //go to login, if already login, then direct to shipping
   }
   return (
     <Row>
@@ -108,7 +108,7 @@ const CartScreen = () => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
-                Check Out
+                Proceed To Checkout
               </Button>
             </ListGroup.Item>
           </ListGroup>
