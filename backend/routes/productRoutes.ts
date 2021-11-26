@@ -1,44 +1,10 @@
-import express, { Router } from 'express';
-import asyncHandler from 'express-async-handler';
-
-import Cargotery from '../models/cargoteryModel';
-import Product from '../models/productModel';
-
+import express from 'express';
+import { getProductById, getProducts } from '../controllers/productController';
+import { getCartgotery } from '../controllers/cartegoryController';
 const router = express.Router();
 
-// @desc  Fetch all products
-// @route GET /api/products
-// @access Public
-router.get(
-  '/products',
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    // res.status(401)
-    // throw new Error("hi")
-    res.json(products);
-  })
-);
-
-router.get(
-  '/cargotery',
-  asyncHandler(async (req, res) => {
-    const cargotery = await Cargotery.find({});
-    res.json(cargotery);
-  })
-);
-
-router.get(
-  '/products/:id',
-  asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404);
-      throw new Error('Product not found');
-    }
-  })
-);
+router.route('/products').get(getProducts)
+router.route('/products/:id').get(getProductById)
+router.route('/cargotery').get(getCartgotery)
 
 export default router;
