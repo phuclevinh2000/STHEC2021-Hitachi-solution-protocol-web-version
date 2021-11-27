@@ -1,10 +1,9 @@
 import express, { Application, Request, Response, NextFunction, Errback } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
-import products from './data/products';
-import cargotery from './data/cargotery';
 
 import productRoutes from "./routes/productRoutes"
+import userRoutes from "./routes/userRoutes"
 import { errorHandler, notFound } from './middleware/errorMiddleware';
 
 dotenv.config();
@@ -19,6 +18,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/api', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
