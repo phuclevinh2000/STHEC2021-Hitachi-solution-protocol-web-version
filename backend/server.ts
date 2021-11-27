@@ -8,7 +8,8 @@ import { errorHandler, notFound } from './middleware/errorMiddleware';
 
 dotenv.config();
 
-// console.log(process.env.MONGO_URL)
+// console.log(process.env.NODE_ENV)
+
 connectDB()
 
 const app: Application = express();

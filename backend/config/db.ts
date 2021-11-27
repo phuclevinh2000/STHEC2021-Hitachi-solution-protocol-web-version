@@ -1,11 +1,12 @@
 import mongoose from "mongoose"
+import dotenv from "dotenv"
 
+dotenv.config()
 // const url: any = process.env.MONGO_URL
-const url = "mongodb+srv://phuc1234:Wo123456@proshop.bg6jr.mongodb.net/hitachi"
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(url, {
+    const conn = await mongoose.connect(`${process.env.MONGO_URL}`, {
       // useUnifiedTopology:: true, //option to remove warning
     })
     // console.log("hi")
