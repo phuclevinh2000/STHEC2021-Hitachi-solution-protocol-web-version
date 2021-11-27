@@ -1,11 +1,12 @@
 import mongoose, { Document } from 'mongoose';
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcryptjs';
 
 export type UserDocument = Document & {
   name: string;
   email: string;
   password: string;
   isAdmin: boolean;
+  matchPassword: any;
 };
 
 const userSchema = new mongoose.Schema(

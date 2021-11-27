@@ -13,6 +13,8 @@ connectDB()
 
 const app: Application = express();
 
+app.use(express.json())
+
 app.get('/', (req: Request, res: Response) => {
   res.send('API is running');
 });

@@ -6,15 +6,15 @@ import express,{ Application, Request, Response, NextFunction, Errback } from "e
 // @desc  Auth user & get token
 // @route POST /api/users/login
 // @access Public
-const authUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password } = (<any>res).body
+const authUser = asyncHandler(async (req: Request, res: Response) => {
+  const { email, password } = (<any>req).body
   const user = await User.findOne({email})
-
+  // console.log(email)
   if(user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
       name: user.name,
-      email: user.email,
+      // email: user.email,
       isAdmin: user.isAdmin,
       token: null
     })
