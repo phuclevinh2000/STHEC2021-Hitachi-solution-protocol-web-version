@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel';
 import { NextFunction } from 'express';
 
-interface decodedType {
+type decodedType = {
   id: string;
   iat: number;
   exp: number;
@@ -18,7 +18,7 @@ const protect = asyncHandler(async (req: any, res: any, next: NextFunction) => {
     try {
       token = req.headers.authorization.split(' ')[1]; //take the token
 
-      const decoded: decodedType | any = jwt.verify(token, `${process.env.JWT_SECRET}`);
+      const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`) as decodedType;
 
       req.user = await User.findById(decoded.id).select('-password'); //dont send the password
 
