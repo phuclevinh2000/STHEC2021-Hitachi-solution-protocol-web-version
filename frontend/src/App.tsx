@@ -16,15 +16,18 @@ const App = () => {
       <Header />
       <main className='py-3 d-flex justify-content-center'>
         <Container>
-        <Routes>
-          <Route path="/cart/" element={<CartScreen />} />
-          <Route path="/cart/:id" element={<CartScreen />} />
-          <Route path="/aboutproject" element={<AboutProject />} />
-          <Route path='/product' element={<ProductCargotery />} />
-          <Route path='/product/:id' element={<ProductScreen />} />
-          <Route path='/product/explore/:cardname' element={<CardProduct />} />
-          <Route path='/' element={<HomeScreen />} />
-        </Routes>
+          <Routes>
+            <Route path='/cart/' element={<CartScreen />} />
+            <Route path='/cart/:id' element={<CartScreen />} />
+            <Route path='/aboutproject' element={<AboutProject />} />
+            <Route path='/product' element={<ProductCargotery />} />
+            <Route path='/product/:id' element={<ProductScreen />} />
+            <Route
+              path='/product/explore/:cardname'
+              element={<CardProduct />}
+            />
+            <Route path='/' element={<HomeScreen />} />
+          </Routes>
         </Container>
       </main>
       <Footer />
