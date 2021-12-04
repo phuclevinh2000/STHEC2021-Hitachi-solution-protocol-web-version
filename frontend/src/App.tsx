@@ -9,6 +9,7 @@ import ProductCargotery from './screens/ProductCargotery';
 import CardProduct from './components/CardProduct';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
               path='/product/explore/:cardname'
               element={<CardProduct />}
             />
+            <Route path='/login' element={<LoginScreen />} />
             <Route path='/' element={<HomeScreen />} />
           </Routes>
         </Container>
