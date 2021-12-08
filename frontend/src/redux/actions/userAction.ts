@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+  USER_DETAIL_FAIL,
+  USER_DETAIL_REQUEST,
+  USER_DETAIL_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -82,6 +85,44 @@ export const register =
     } catch (error: any) {
       dispatch({
         type: USER_REGISTER_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+
+  export const getUserDetails =
+  (id: string) => async (dispatch: (arg0: { type: string; payload?: any; }) => void, getState: () => { userLogin: { userInfo: any; }; }) => {
+    try {
+      dispatch({
+        type: USER_DETAIL_REQUEST
+      })
+
+      const { userLogin : { userInfo } } = getState();  //access to userInfo in userLogin
+
+      const config = {
+        headers: {
+          'Content-Type':'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        }
+      }
+
+      const {data} = await axios.get(
+        `/api/users/${id}`, //check on postman or backend
+        config
+      )
+
+      dispatch({
+        type: USER_DETAIL_SUCCESS,
+        payload: data
+      })
+
+    } catch (error: any) {
+      dispatch({
+        type: USER_DETAIL_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
