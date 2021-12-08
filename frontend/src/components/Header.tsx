@@ -1,15 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../redux/actions/userAction"
 
 const Header: React.FC = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const userLogin = useSelector((state: any) => state.userLogin)
   const { userInfo } = userLogin;
   const logoutHandler = () => {
     dispatch(logout())
+    navigate('/login')
   }
   return (
     <header>
@@ -41,9 +43,9 @@ const Header: React.FC = () => {
               {/* </Link> */}
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
-                  <Nav.Link href="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </Nav.Link>
+                  <NavDropdown.Item>
+                    <Link to='/profile'>Profile</Link>
+                  </NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
