@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -10,6 +10,7 @@ import { login } from '../redux/actions/userAction';
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordShown, setPasswordShown] = useState(false);
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -29,6 +30,10 @@ const LoginScreen = () => {
     //DISPATCH LOGIN
     dispatch(login(email, password))
   }
+
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
   return (
     <FormContainer>
       <h1>Sign In</h1>
@@ -45,14 +50,19 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
+        <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <InputGroup>
+            <Form.Control
+              type={passwordShown ? 'text' : 'password'}
+              placeholder='Enter password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <InputGroup.Text onClick={togglePassword}>
+              <i className='fas fa-eye'></i>
+            </InputGroup.Text>
+          </InputGroup>
         </Form.Group>
 
         <Button type="submit" variant="primary">

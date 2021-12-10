@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -11,6 +11,7 @@ const ProfileScreen = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordShown, setPasswordShown] = useState(false);
   const [message, setMessage] = useState<any>(null);
 
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ const ProfileScreen = () => {
       }
     }
   }, [navigate, userInfo, dispatch, user]);
+
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
 
   const submitHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -75,14 +80,18 @@ const ProfileScreen = () => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='email'>
+          <Form.Group controlId='password'>
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Enter email'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
+            <InputGroup>
+              <Form.Control
+                type={passwordShown ? 'text' : 'password'}
+                placeholder='Enter password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <InputGroup.Text onClick={togglePassword}><i className="fas fa-eye"></i></InputGroup.Text>
+            </InputGroup>
+            {/* <input type='checkbox' className='my-1' onClick={togglePassword} /> <span>Show Password</span> */}
           </Form.Group>
 
           <Form.Group controlId='email'>
