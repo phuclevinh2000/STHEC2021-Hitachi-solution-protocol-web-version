@@ -4,7 +4,8 @@ import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { getUserDetails } from '../redux/actions/userAction';
+import { getUserDetails, updateUserProfile } from '../redux/actions/userAction';
+import { USER_UPDATE_PROFILE_RESET } from '../types/userConstant';
 
 const ProfileScreen = () => {
   const [email, setEmail] = useState('');
@@ -19,24 +20,27 @@ const ProfileScreen = () => {
 
   const userDetails = useSelector((state: {userDetails: any}) => state.userDetails);
   const { loading, error, user } = userDetails;
-  console.log(user)
 
   const userLogin = useSelector((state: {userLogin: any}) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state: any) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+  
   useEffect(() => {
     if (!userInfo) {
       //check if login yet
       navigate('/login');
     } else {
-      if (!user.name) {
+      if (!user.name || success) {
+        dispatch({type: USER_UPDATE_PROFILE_RESET})
         dispatch(getUserDetails('profile'));
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [navigate, userInfo, dispatch, user]);
+  }, [navigate, userInfo, dispatch, user, success]);
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
@@ -49,7 +53,7 @@ const ProfileScreen = () => {
       setMessage('Password do not match');
     } else {
       //DISPATCH UPDATE PROFILE
-      // dispatch(updateUserProfile({ id: user._id, name, email, password }))
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     }
   };
   return (
@@ -58,9 +62,10 @@ const ProfileScreen = () => {
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
+        {success && <Message variant='success'>Profile Update</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId='email'>
+          <Form.Group controlId='name'>
             <Form.Label>Name</Form.Label>
             <Form.Control
               type='name'
@@ -94,7 +99,7 @@ const ProfileScreen = () => {
             {/* <input type='checkbox' className='my-1' onClick={togglePassword} /> <span>Show Password</span> */}
           </Form.Group>
 
-          <Form.Group controlId='email'>
+          <Form.Group controlId='confirmPassword'>
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type='password'
